@@ -21,30 +21,11 @@ jobs:
           folder: frontend/docs-qa-index 
           clean: true 
           target-folder: docs
-      - name: Get list of branches from docs-qa repo
-        working-directory: ./frontend
-        continue-on-error: true
-        run: | 
-          URL=https://raw.githubusercontent.com/ucsb-cs156-w22/demo-cra-customized-docs-qa/main/docs/storybook-qa-list/branches.txt
-          mkdir -p storybook-qa-list
-          cd storybook-qa-list
-          # get file, -f means don't worry if it fails (might be first time)
-          curl -f -o branches.txt ${URL}
-      - name: Add the current branch, and remove duplicates
-        working-directory: ./frontend
-        run: | 
-          mkdir -p storybook-qa-list
-          cd storybook-qa-list
-          # add our branch
-          echo ${{ github.head_ref }} >> branches.txt
-          # remove duplicates
-          sort branches.txt | uniq > branches.uniq.txt
       - name: Generate Markdown file of links to branches
-        working-directory: ./frontend/storybook-qa-list
+        working-directory: ./frontend/scripts
         run: | 
-          /bin/rm -rf branches.md
-          echo "# Branches " >> branches.md
-          while IFS= read -r line; do echo "* [$line](../storybook-qa/$line/index.html)" >> branches.md ; done < branches.uniq.txt
+          gh api repos/ucsb-cs156-w22/demo-cra-customized/branches > branches.json
+          node list-branches.mjs > ../storybook-qa-list/index.md
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@4.2.0
         with:
