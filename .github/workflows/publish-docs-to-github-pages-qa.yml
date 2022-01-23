@@ -12,6 +12,39 @@ jobs:
         uses: actions/checkout@v2.3.1
         with:
           persist-credentials: false
+      - name: Get list of branches from docs-qa repo
+        working-directory: ./frontend
+        continue-on-error: true
+        run: | 
+          URL=https://raw.githubusercontent.com/ucsb-cs156-w22/demo-cra-customized-docs-qa/main/docs/storybook-qa-list/branches.txt
+          mkdir -p storybook-qa-list
+          cd storybook-qa-list
+          # get file, -f means don't worry if it fails (might be first time)
+          curl -f -o branches.txt ${URL}
+      - name: Add the current branch, and remove duplicates
+        working-directory: ./frontend
+        run: | 
+          mkdir -p storybook-qa-list
+          cd storybook-qa-list
+          # add our branch
+          echo ${{ github.head_ref }} >> branches.txt
+          # remove duplicates
+          sort branches.txt | uniq -u
+      - name: Generate Markdown file of links to branches
+        working-directory: ./frontend/storybook-qa-list
+        run: | 
+          /bin/rm -rf branches.md
+          touch branches.md
+          while IFS= read -r line; do echo "* [$line]($line)" >> branches.md ; done < branches.txt
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@4.2.0
+        with:
+          repository-name: ${{ github.repository }}-docs-qa
+          token: ${{ secrets.DOCS_TOKEN }}
+          branch: main # The branch the action should deploy to.
+          folder: frontend/storybook-qa-list # The folder that the build-storybook script generates files.
+          clean: true # Automatically remove deleted files from the deploy branch
+          target-folder: docs/storybook-qa-list/
       - name: Install and Build 🔧
         working-directory: ./frontend
         run: | # Install npm packages and build the Storybook files
@@ -26,4 +59,5 @@ jobs:
           branch: main # The branch the action should deploy to.
           folder: frontend/storybook-static # The folder that the build-storybook script generates files.
           clean: true # Automatically remove deleted files from the deploy branch
-          target-folder: docs/storybook-qa/${{ GITHUB_REF_NAME }} # The folder that we serve our Storybook files from 
+          target-folder: docs/storybook-qa/${{ github.head_ref}} # The folder that we serve our Storybook files from 
+      
