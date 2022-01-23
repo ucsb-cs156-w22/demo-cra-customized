@@ -1,4 +1,4 @@
-import { arrayMin, arrayMax } from "main/utils/minMax";
+import { arrayMin, arrayMax } from "main/utils/minMax_NoStryker";
 
 describe("minMax tests", () => {
   test("arrayMin returns min value of array", () => {
