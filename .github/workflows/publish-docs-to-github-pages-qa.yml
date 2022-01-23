@@ -23,8 +23,12 @@ jobs:
           target-folder: docs
       - name: Generate Markdown file of links to branches
         working-directory: ./frontend/scripts
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: | 
           gh api repos/ucsb-cs156-w22/demo-cra-customized/branches > branches.json
+          mkdir -p ../storybook-qa-list
+          /bin/rm -f ../storybook-qa-list/index.md
           node list-branches.mjs > ../storybook-qa-list/index.md
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@4.2.0
