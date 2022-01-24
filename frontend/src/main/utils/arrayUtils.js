@@ -1,4 +1,4 @@
-import { arrayMin, arrayMax } from "main/utils/minMax_NoStryker";
+import { arrayMin, arrayMax } from "main/utils/minMax";
 
 const getFirstSmallestLargest = (list, mapper) => {
   const first = mapper(list[0]);
