@@ -40,6 +40,7 @@ jobs:
           touch $FILENAME
           echo "---" >> $FILENAME
           echo "name: ${{ github.head_ref }}" >> $FILENAME
+          echo "actor: ${{ github.actor}}" >> $FILENAME
           echo "---" >> $FILENAME
       # - name: Deploy (branch-name).md file to branch collection 🚀
       #   uses: JamesIves/github-pages-deploy-action@4.2.0
@@ -50,7 +51,7 @@ jobs:
       #     folder: frontend/_branches.tmp # The folder that the build-storybook script generates files.
       #     clean: false # Automatically remove deleted files from the deploy branch
       #     target-folder: docs/_branches
-      - name: Pushes test file
+      - name: Pushes branch
         uses: dmnemec/copy_file_to_another_repo_action@main
         env:
           API_TOKEN_GITHUB: ${{ secrets.DOCS_TOKEN }}
