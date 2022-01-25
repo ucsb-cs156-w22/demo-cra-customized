@@ -3,8 +3,8 @@
 
 ## Repos
 
-* Source Repo: <https://github.com/{{site.repo_name}}>
-* Production Docs Repo: <https://github.com/{{site.repo_name}}-docs>
+* Source Repo: <https://github.com/{{site.repo}}>
+* Production Docs Repo: <https://github.com/{{site.repo}}-docs>
 
 * QA Docs Repo: <https://github.com/{{site.repo}}-docs-qa>
 
