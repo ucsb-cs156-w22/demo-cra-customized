@@ -7,6 +7,8 @@ description: >- # this means to ignore newlines until "baseurl:"
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 
+repo_name: "This-should-be-overridden-by-github-actions-script"
+
 # Build settings
 theme: minima
 plugins:
@@ -16,3 +18,5 @@ collections:
   branches:
     output: true
     permalink: /branches/:path/
+
+repo_name: "This-should-be-overridden-by-github-actions-script"
