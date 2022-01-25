@@ -59,6 +59,8 @@ jobs:
           destination_repo: ${{ github.repository }}-docs-qa
           destination_folder: 'docs/_branches'
           commit_message: 'Add branch ${{ github.head_ref }} to docs-qa repo'
+          user_email: phtcon@ucsb.edu
+          user_name: "Phill Conrad, UCSB CS machine user"
       - name: Install and Build 🔧
         working-directory: ./frontend
         run: | # Install npm packages and build the Storybook files
