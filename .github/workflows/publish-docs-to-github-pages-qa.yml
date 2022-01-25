@@ -41,15 +41,24 @@ jobs:
           echo "---" >> $FILENAME
           echo "name: ${{ github.head_ref }}" >> $FILENAME
           echo "---" >> $FILENAME
-      - name: Deploy (branch-name).md file to branch collection 🚀
-        uses: JamesIves/github-pages-deploy-action@4.2.0
+      # - name: Deploy (branch-name).md file to branch collection 🚀
+      #   uses: JamesIves/github-pages-deploy-action@4.2.0
+      #   with:
+      #     repository-name: ${{ github.repository }}-docs-qa
+      #     token: ${{ secrets.DOCS_TOKEN }}
+      #     branch: main # The branch the action should deploy to.
+      #     folder: frontend/_branches.tmp # The folder that the build-storybook script generates files.
+      #     clean: false # Automatically remove deleted files from the deploy branch
+      #     target-folder: docs/_branches
+      - name: Pushes test file
+        uses: dmnemec/copy_file_to_another_repo_action@main
+        env:
+          API_TOKEN_GITHUB: ${{ secrets.DOCS_TOKEN }}
         with:
-          repository-name: ${{ github.repository }}-docs-qa
-          token: ${{ secrets.DOCS_TOKEN }}
-          branch: main # The branch the action should deploy to.
-          folder: frontend/_branches.tmp # The folder that the build-storybook script generates files.
-          clean: false # Automatically remove deleted files from the deploy branch
-          target-folder: docs/_branches
+          source_file: 'frontend/_branches.tmp/${{github.head_ref }}.md'
+          destination_repo: ${{ github.repository }}-docs-qa
+          destination_folder: 'docs/_branches'
+          commit_message: 'Add branch ${{ github.head_ref }} to docs-qa repo'
       - name: Install and Build 🔧
         working-directory: ./frontend
         run: | # Install npm packages and build the Storybook files
