@@ -41,7 +41,8 @@ jobs:
           echo "---" >> $FILENAME
           echo "name: ${{ github.head_ref }}" >> $FILENAME
           echo "actor: ${{ github.actor}}" >> $FILENAME
-          echo "pull_request_url: ${{ github.event.pull_request.url}}" >> $FILENAME
+          echo "pull_request_url: ${{ github.event.pull_request.html_url}}" >> $FILENAME
+          echo "pull_request_num: ${{ github.event.pull_request.number}}" >> $FILENAME
           echo "---" >> $FILENAME
       # - name: Deploy (branch-name).md file to branch collection 🚀
       #   uses: JamesIves/github-pages-deploy-action@4.2.0

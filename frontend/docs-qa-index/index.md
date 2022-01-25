@@ -35,7 +35,7 @@ tr:nth-child(even) {background-color: #f2f2f2;}
 <tr>
 <td>{{b.name}}</td>
 <td>{{b.actor}}</td>
-<td>{{b.pull_request_url}}</td>
+<td><a href="{{b.pull_request_url}}">PR {{b.}}</a></td>
 <td><a href="storybook-qa/{{b.name}}">storybook</a></td>
 </tr>
 {% endfor %}
