@@ -16,6 +16,7 @@ jobs:
         working-directory: ./frontend/docs-qa-index
         run: | 
           echo "repo_name: ${{github.repository}}" >> _config.yml
+          echo "owner: ${{ github.repository_owner }}" >> _config.yml
       - name: Deploy index.md and jekyll files for docs-qa site 🚀
         uses: JamesIves/github-pages-deploy-action@4.2.0
         with:
