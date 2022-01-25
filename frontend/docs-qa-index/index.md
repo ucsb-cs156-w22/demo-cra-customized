@@ -1,8 +1,6 @@
 ---
 ---
 
-## Repos
-
 * Source Repo: <https://github.com/{{site.repo}}>
 * Production Docs Repo: <https://github.com/{{site.repo}}-docs>
 * QA Docs Repo: <https://github.com/{{site.repo}}-docs-qa>
@@ -17,6 +15,7 @@
 table, th, td {
   border: 1px solid black;
   border-collapse: collapse;
+  padding: 2px;
 }
 tr:nth-child(even) {background-color: #f2f2f2;}
 </style>
@@ -35,7 +34,7 @@ tr:nth-child(even) {background-color: #f2f2f2;}
 <tr>
 <td>{{b.name}}</td>
 <td>{{b.actor}}</td>
-<td>{{b.pull_request_url}}</td>
+<td><a href="{{b.pull_request_url}}">PR {{b.}}</a></td>
 <td><a href="storybook-qa/{{b.name}}">storybook</a></td>
 </tr>
 {% endfor %}
