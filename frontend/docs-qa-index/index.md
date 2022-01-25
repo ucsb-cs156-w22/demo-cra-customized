@@ -13,10 +13,14 @@
 
 ## Branches
 
-| Branch | Who Pushed It | Storybook |
-|--------|---------------|-----------|
+<table>
+<thead>
+<tr><th>Branch</th><th>Who Pushed It</th><th>Storybook</th></tr>
+<thead>
+<tbody>
 {% for b in site.branches %}
-|{{b.name}}| {{b.actor}}| [storybook](storybook-qa/{{b.name}})|
+<tr><td>{{b.name}}</td><td>{{b.actor}}</td><td><a href="storybook-qa/{{b.name}}">storybook</a></td></tr>
 {% endfor %}
-
+</tbody>
+</table>
 
