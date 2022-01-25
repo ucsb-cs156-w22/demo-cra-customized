@@ -13,6 +13,14 @@
 
 ## Branches
 
+<style>
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+tr:nth-child(even) {background-color: #f2f2f2;}
+</style>
+
 <table>
 <thead>
 <tr>
