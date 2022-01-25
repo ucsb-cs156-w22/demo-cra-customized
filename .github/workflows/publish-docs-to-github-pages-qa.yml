@@ -28,7 +28,7 @@ jobs:
           token: ${{ secrets.DOCS_TOKEN }}
           branch: main # The branch the action should deploy to.
           folder: frontend/docs-qa-index 
-          clean: true 
+          clean: false 
           target-folder: docs
       - name: Generate .md file to add to branch collection
         working-directory: ./frontend
