@@ -16,6 +16,13 @@ export default function AppNavbar() {
               <NavDropdown.Divider />
               <NavDropdown.Item href="/action/four">Separated link</NavDropdown.Item>
             </NavDropdown>
+            <NavDropdown title="Cereals" id="basic-nav-dropdown">
+              <NavDropdown.Item href="/cereal/cp">Cocoa Puffs</NavDropdown.Item>
+              <NavDropdown.Item href="/cereal/fl">Froot Loops</NavDropdown.Item>
+              <NavDropdown.Item href="/cereal/cc">Cap'n Crunch</NavDropdown.Item>
+              <NavDropdown.Divider />
+              <NavDropdown.Item href="/cereal/oatmeal">Oatmeal</NavDropdown.Item>
+            </NavDropdown>
           </Nav>
         </Navbar.Collapse>
       </Container>
